@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+</head>
+<body>
+
+Filter by Divisions: <select name='numbers' id='numbers' >
+  <option value='' readonly>Select</option>
+  <option value='' >All</option>
+  <option value='Dhaka' >Dhaka</option>
+  <option value='Chittagong'>Chittagong</option>
+  <option value='Khulna'>Khulna</option>
+  <option value='Rajshahi'>Rajshahi</option>
+</select>
+<br><br><br>
+<table id="myTable">
+  <tr class="header">
+    <th style="width:60%;">Name</th>
+    <th style="width:40%;">Division</th>
+  </tr>
+  <tr>
+    <td>Osman Ali</td>
+    <td>Dhaka</td>
+  </tr>
+  <tr>
+    <td>Joshim Khan</td>
+    <td>Rajshahi</td>
+  </tr>
+  <tr>
+    <td>Kamal Ali</td>
+    <td>Dhaka</td>
+  </tr>
+  <tr>
+    <td>Hasan Khan</td>
+    <td>Rajshahi</td>
+  </tr>
+  <tr>
+    <td>Mohsin Ali</td>
+    <td>Dhaka</td>
+  </tr>
+
+</table>
+
+<script>
+function filterRow(selected) {
+    var input, filter, table, tr, td, i, txtValue;
+    //input = document.getElementById("myInput");
+    input = selected;
+    //alert(input);
+    filter = input.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+$(document).ready(function() {
+    $('#numbers').change(function() {
+        var selected = $(this).val();
+        filterRow(selected);
+        //alert('hi');
+        /*
+        if ($(this).val() === '1'){
+          function1();
+        }
+        if ($(this).val() === '2'){
+          function2();
+        }
+        */
+    });
+});
+
+
+</script>
+
+</body>
+</html>
